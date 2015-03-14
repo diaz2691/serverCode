@@ -1,6 +1,6 @@
 <?php
-$username = $_POST['username'];
-$password = $_POST['password'];
+$username = json_decode($_POST['username']);
+$password = json_decode($_POST['password']);
 echo $username." ".$password;
 //echo exec("whoami");
 
