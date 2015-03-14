@@ -1,9 +1,10 @@
 <?php
-$data = json_decode($_POST['myData']);
-echo $data;
-echo exec("whoami");
+$username = $_POST['username'];
+$password = $_POST['password'];
+echo $username." ".$password;
+//echo exec("whoami");
 
-passthru('python test.py 1 2>&1');
+//passthru('python test.py 1 2>&1');
 
 
 ?>
