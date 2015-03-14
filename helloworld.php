@@ -5,7 +5,7 @@
 foreach (getallheaders() as $name => $value){
 	echo "$name: $value\n";
 }
-print_r($_POST);
+echo ($_POST['username']);
 //echo $username." ".$password;
 //echo exec("whoami");
 
