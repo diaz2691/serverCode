@@ -4,6 +4,7 @@ import sys
 import urllib.request
 from bs4 import BeautifulSoup
 import time
+import courseData
 
 gradeLink = "https://ilearn.csumb.edu/grade/report/user/index.php?id="
 
@@ -56,29 +57,44 @@ for link in links:
 arrAssignments = []
 arrAName = []
 arrDueDate = []
+d = {'January': 1, 'February': 2, 'March': 3, 'April': 4, 'May': 5, 'June': 6, 'July': 7, 'August': 8,
+     'September': 9, 'October': 10, 'November': 11, 'December': 12}
+courseAssignmentDictionary = []
 
 for index in range(len(courseId)):
     driver.get(assignmentLink + courseId[index])
+##    tempClass = courseData.CourseData()
+##    tempClass.set_courseName(arr[index])
     page = driver.find_element_by_tag_name('tbody')
     arrAssignments = page.text.split("\n")
-
+    
     for each in arrAssignments:
+        tempClass = courseData.CourseData()
+        tempClass.set_courseName(arr[index])
         tempArr = each.split(",")
         datestr = time.strftime('%d')+" "+time.strftime('%m')
-        if(len(tempArr) > 0):
-            arrAName.append(tempArr[0])
-            if(len(tempArr) == 1 ):
-                arrDueDate.append("No Due Date Set")
-            else:
-                if(tempArr[1] >= int(time.strftime('%d')) ):
-                    continue
-                arrDueDate.append(tempArr[1])
+        if(len(tempArr) > 1):
+##            arrAName.append(tempArr[0])
+            tempClass.set_assignmentName(tempArr[0])
+            tempClass.set_assignmentDueDate(tempArr[1])
+            courseAssignmentDictionary.append(tempClass)
+##            if(len(tempArr) == 1 ):
+##                arrDueDate.append("No Due Date Set")
+##                tempClass.set_assignmentDueDate("No Due Date Set")
+##            else:
+##                arrDueDate.append(tempArr[1])
+##                tempClass.set_assignmentDueDate(tempArr[1])
+        
 
-for i in range(len(arrAName)):
-    print ("\nAssignment: "+arrAName[i]+"\n Due date"+arrDueDate[i])
+##for i in range(len(arrAName)):
+##    print ("\nAssignment: "+arrAName[i]+"\nDue date"+arrDueDate[i])
 
-
+for assignment in courseAssignmentDictionary:
+    print("Course Name: "+ assignment.get_courseName())
+    print("Assignment Title: "+ assignment.get_assignmentName())
+    print("Assignment Due: "+ assignment.get_assignmentDueDate())
+    
 
 ##arrayGrade = page.text.split("\n")
 ##for i in arrayGrade:
-##    print ("line" + i)
+##    print ("line" + i)    
