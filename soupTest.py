@@ -1,7 +1,7 @@
 import urllib.request
 from bs4 import BeautifulSoup
 
-site = "http://ilearn.csumb.edu/my/"
+site = "http://ilearn.csumb.edu/"
 
 sock = urllib.request.urlopen(site)
 
@@ -11,7 +11,7 @@ sock.close()
 
 soup = BeautifulSoup(htmlSource)
 
-for i in soup('h2'):
+for i in soup('ul' , 'unlist'):
     print (i.text)
 
 
