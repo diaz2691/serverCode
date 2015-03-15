@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select # for <SELECT> HTML form
+import sys
 
 driver = webdriver.PhantomJS('C:\phantomjs\phantomjs.exe')
 # On Windows, use: webdriver.PhantomJS('C:\phantomjs-1.9.7-windows\phantomjs.exe')
@@ -10,8 +11,10 @@ driver.get("https://sso.csumb.edu/cas/login?service=http%3A%2F%2Filearn.csumb.ed
 
 # Login page (https://cas.ensicaen.fr/cas/login?service=https%3A%2F%2Fshibboleth.ensicaen.fr%2Fidp%2FAuthn%2FRemoteUser)
 # Fill the login form and submit it
-driver.find_element_by_id('username').send_keys("")
-driver.find_element_by_id('password').send_keys("")
+username = sys.argv[2]
+password = sys.argv[3]
+driver.find_element_by_id('username').send_keys(username)
+driver.find_element_by_id('password').send_keys(password)
 driver.find_element_by_id('fm1').submit()
 
 # Now connected to the home page
