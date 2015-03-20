@@ -57,8 +57,6 @@ for link in links:
 arrAssignments = []
 arrAName = []
 arrDueDate = []
-d = {'January': 1, 'February': 2, 'March': 3, 'April': 4, 'May': 5, 'June': 6, 'July': 7, 'August': 8,
-     'September': 9, 'October': 10, 'November': 11, 'December': 12}
 courseAssignmentDictionary = []
 
 for index in range(len(courseId)):
@@ -97,4 +95,52 @@ for assignment in courseAssignmentDictionary:
 
 ##arrayGrade = page.text.split("\n")
 ##for i in arrayGrade:
-##    print ("line" + i)    
+##    print ("line" + i)
+
+
+########################################################  Getting grade code ##############################################
+
+
+
+
+
+driver.get(gradeLink + "8733")
+page = driver.find_element_by_class_name('td')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
